@@ -15,6 +15,7 @@ import weather from "./weather";
 import workHours from "./workHours";
 import joke from "./joke";
 import fripeWeather from "./fripe-weather"
+import hackerNews from "./hackerNews";
 
 export const widgetConfigs = [
   css,
@@ -33,6 +34,7 @@ export const widgetConfigs = [
   fripeWeather,
   workHours,
   joke,
+  hackerNews,
 ];
 
 if (BUILD_TARGET === "web") {
