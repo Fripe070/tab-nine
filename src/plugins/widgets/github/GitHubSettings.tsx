@@ -30,6 +30,31 @@ const GitHubSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
       />{" "}
       Link to your profile
     </label>
+
+    <label>
+      <input
+        type="checkbox"
+        checked={data.useCustomColors}
+        onChange={(event) => setData({ ...data, useCustomColors: !data.useCustomColors })}
+      />{" "}
+      Use custom colors
+    </label>
+    <label>
+      <input
+        type="color"
+        value={data.backgroundColor}
+        onChange={(event) => setData({ ...data, backgroundColor: event.target.value }) }
+      />{" "}
+      Background Color
+    </label>
+    <label>
+      <input
+        type="color"
+        value={data.foregroundColor}
+        onChange={(event) => setData({ ...data, foregroundColor: event.target.value }) }
+      />{" "}
+      Foreground Color
+    </label>
   </div>
 );
 
