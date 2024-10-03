@@ -39,8 +39,8 @@ const Weather: React.FC<Props> = ({
     <div className="Weather">
       <div
         className="summary"
-        onClick={() => setData({ ...data, showDetails: !data.showDetails })}
-        title="Toggle weather details"
+        // onClick={() => setData({ ...data, showDetails: !data.showDetails })}
+        // title="Toggle weather details"
       >
         {data.name ? <span>{data.name}</span> : null}
         <Icon name={weatherCodes[conditions.weatherCode]} />

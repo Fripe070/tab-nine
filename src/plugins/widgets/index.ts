@@ -14,6 +14,7 @@ import todo from "./todo";
 import weather from "./weather";
 import workHours from "./workHours";
 import joke from "./joke";
+import fripeWeather from "./fripe-weather"
 
 export const widgetConfigs = [
   css,
@@ -29,6 +30,7 @@ export const widgetConfigs = [
   time,
   todo,
   weather,
+  fripeWeather,
   workHours,
   joke,
 ];

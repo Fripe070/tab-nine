@@ -1,0 +1,21 @@
+.FripeWeather {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.5ch;
+
+    .summary {
+        cursor: none;
+    }
+
+    .feelsLike {
+        vertical-align: text-top;
+        font-size: 1rem;
+        opacity: 0.7;
+    }
+
+    .low {
+        opacity: 0.7;
+    }
+}
+

@@ -50,6 +50,10 @@ const config = {
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
       {
+        test: /\.scss$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+      },
+      {
         test: /\.svg$/,
         loader: "raw-loader",
       },
