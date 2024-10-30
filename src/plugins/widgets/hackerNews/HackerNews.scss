@@ -7,7 +7,6 @@
 
     .story {
       height: fit-content;
-      max-height: 60px;
       text-align: left;
 
       border-radius: 5px;
@@ -19,6 +18,7 @@
 
       .title {
         max-height: 60%;
+        max-width: 40ch;
       }
       .by {
         line-height: 1.5;

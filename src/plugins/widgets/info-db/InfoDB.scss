@@ -1,0 +1,41 @@
+.InfoDB {
+    .quote {
+        text-align: start;
+        padding: 10px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .description {
+            padding-left: 1ch;
+            border-left: 2px solid #000a;
+
+            overflow: hidden;
+            max-width: 60ch;
+        }
+
+        .author {
+            text-align: end;
+            font-style: italic;
+        }
+    }
+}
+
+.InfoDBSettings {
+    textarea {
+        resize: none;
+        height: 100px;
+    }
+
+    .items {
+        display: flex;
+        flex-direction: column;
+    }
+    .items > * {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 5px;
+    }
+}

@@ -1,7 +1,6 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import { Props, defaultData, Story } from "./types";
-import { useCachedEffect, useTime } from "../../../hooks";
-import { AutoTextSize } from 'auto-text-size'
+import { useCachedEffect } from "../../../hooks";
 import { getStories } from "./api";
 import { MINUTES } from "../../../utils";
 import "./HackerNews.scss";
@@ -53,11 +52,9 @@ function Story({ story }: { story: Story }) {
             target="_blank"
             rel="noopener noreferrer"
         >
-            <p className="title">
-                <AutoTextSize maxFontSizePx={20}>
-                    {story.title}
-                </AutoTextSize>
-            </p>
+            <div className="title">
+                  {story.title}
+            </div>
             <p className="by">
                 Posted by {story.by}
             </p>

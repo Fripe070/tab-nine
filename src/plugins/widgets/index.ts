@@ -16,6 +16,7 @@ import workHours from "./workHours";
 import joke from "./joke";
 import fripeWeather from "./fripe-weather"
 import hackerNews from "./hackerNews";
+import InfoDB from "./info-db";
 
 export const widgetConfigs = [
   css,
@@ -35,6 +36,7 @@ export const widgetConfigs = [
   workHours,
   joke,
   hackerNews,
+  InfoDB,
 ];
 
 if (BUILD_TARGET === "web") {

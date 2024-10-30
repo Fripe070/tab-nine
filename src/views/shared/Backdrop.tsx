@@ -25,27 +25,33 @@ const Backdrop: React.FC<Props> = ({
 
   style = { ...style };
 
-  if (blur && !focus) {
-    style["filter"] = `blur(${blur}px)`;
-    style["transform"] = `scale(${blur / 500 + 1})`;
-  }
+  // if (blur && !focus) {
+  //   style["filter"] = `blur(${blur}px)`;
+  //   style["transform"] = `scale(${blur / 500 + 1})`;
+  // }
 
   if (luminosity && !focus) {
     style["opacity"] = 1 - Math.abs(luminosity);
   }
 
   return (
-    <div
-      className="fullscreen"
-      style={{
-        opacity: show ? 1 : 0,
-        transition: "opacity 1000ms ease-in-out",
-      }}
-    >
-      <div style={style} {...rest}>
-        {children}  
+    <>
+      <div
+        className="fullscreen"
+        style={{
+          opacity: show ? 1 : 0,
+          transition: "opacity 1000ms ease-in-out",
+        }}
+      >
+        <div style={style} {...rest}>
+          {children}
+        </div>
       </div>
-    </div>
+
+      <div className="fullscreen" style={{
+        backdropFilter: background.display.blur && !useValue(db, "focus") ? `blur(${background.display.blur}px)` : undefined,
+      }}/>
+    </>
   );
 };
 

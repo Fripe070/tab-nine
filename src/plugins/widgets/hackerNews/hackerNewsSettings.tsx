@@ -1,5 +1,4 @@
 import React from "react";
-import { DebounceInput } from "../../shared";
 import { defaultData, Props } from "./types";
 
 const HackerNewsSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
