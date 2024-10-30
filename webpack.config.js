@@ -24,7 +24,7 @@ const config = {
   },
   output: {
     path: path.resolve("dist", buildTarget),
-    publicPath: "/",
+    publicPath: "/tab-nine",
     filename: isWeb ? "[name].[contenthash:12].js" : "[name].js",
   },
   mode: isProduction ? "production" : "development",
