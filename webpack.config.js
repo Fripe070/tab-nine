@@ -24,7 +24,7 @@ const config = {
   },
   output: {
     path: path.resolve("dist", buildTarget),
-    publicPath: "",
+    publicPath: process.env.PUBLIC_PATH || "/",
     filename: isWeb ? "[name].[contenthash:12].js" : "[name].js",
   },
   mode: isProduction ? "production" : "development",
