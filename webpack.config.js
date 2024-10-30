@@ -24,7 +24,7 @@ const config = {
   },
   output: {
     path: path.resolve("dist", buildTarget),
-    publicPath: "/tab-nine",
+    publicPath: "",
     filename: isWeb ? "[name].[contenthash:12].js" : "[name].js",
   },
   mode: isProduction ? "production" : "development",
@@ -46,12 +46,8 @@ const config = {
         },
       },
       {
-        test: /\.sass$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
-      },
-      {
-        test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        test: /\.s[ac]ss$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader", {loader: "sass-loader", options: {api: "modern"}}],
       },
       {
         test: /\.svg$/,

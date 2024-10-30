@@ -1,4 +1,5 @@
-@import "../../variables"
+@use "sass:color"
+@use "../../variables"
 
 .Settings
     h1
@@ -144,16 +145,16 @@
         &--primary
             background-color: var(--accent-color)
             &:hover
-                background: darken(#ffd755, 10%)
+                background: color.adjust(#ffd755, $lightness: -10%)
             &:active
-                background: darken(#ffd755, 20%)
+                background: color.adjust(#ffd755, $lightness: -20%)
 
         &--secondary
-            background: darken(#ffd755, 20%)
+            background: color.adjust(#ffd755, $lightness: -20%)
             &:hover
-                background: darken(#ffd755, 30%)
+                background: color.adjust(#ffd755, $lightness: -30%)
             &:active
-                background: darken(#ffd755, 40%)
+                background: color.adjust(#ffd755, $lightness: -40%)
 
     @media (prefers-color-scheme: light)
         hr
@@ -196,7 +197,7 @@
         padding: 0.5em
 
         &:hover
-            background-color: darken(#ffd755, 20%) !important
+            background-color: color.adjust(#ffd755, $lightness: -20%) !important
 
 // Define the animation keyframes
 @keyframes gradient
