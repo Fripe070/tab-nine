@@ -5,12 +5,16 @@ on:
   push:
   pull_request:
 
+env:
+  PUBLIC_PATH: /tab-nine
+
 jobs:
   test:
     name: Run tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.5.3
+
       - uses: actions/setup-node@v3.7.0
         with:
           node-version: 16
@@ -63,6 +67,7 @@ jobs:
         env:
           UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
           NASA_API_KEY: ${{ secrets.NASA_API_KEY }}
+          PUBLIC_PATH: ${{ env.PUBLIC_PATH }}
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload Artifact
