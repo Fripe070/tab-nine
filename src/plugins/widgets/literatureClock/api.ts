@@ -1,7 +1,7 @@
 import { Quote } from "./types";
 
 const apiEndpoint =
-  "https://raw.githubusercontent.com/lbngoc/literature-clock/master/docs/times";
+  "https://raw.githubusercontent.com/JohannesNE/literature-clock/master/docs/times";
 
 // Get current time code
 export function getTimeCode(time: Date) {
