@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from "react";
-import GitHubCalendar from "react-github-calendar";
+import GitHubCalendar, { ThemeInput } from "react-github-calendar";
 import { Props, defaultData } from "./types";
 import { useKey } from "../../../lib/db/react";
 import { db } from "../../../db/state";
@@ -14,7 +14,7 @@ const GitHubCalendarWidget: FC<Props> = ({ data = defaultData, loader }) => {
   const customTheme = {
     dark: [data.backgroundColor, data.foregroundColor],
     light: [data.foregroundColor, data.backgroundColor],
-  }
+  } as ThemeInput;
 
   return (
     <div className="GitHub">
