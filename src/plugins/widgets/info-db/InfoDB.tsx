@@ -25,7 +25,11 @@ const InfoDBWidget: FC<Props> = ({
                         randomItem.title
                     )}
                 </h3>
-                <div className="description">{randomItem.description}</div>
+                <div className="description">
+                  {randomItem.description.split("\n").map((item, key) => {
+                    return <span key={key}>{item}<br/></span>
+                  })}
+                </div>
                 {randomItem.author && <div className="author">&ndash; {randomItem.author}</div>}
             </div>
         </div>
