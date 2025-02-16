@@ -17,6 +17,7 @@ import joke from "./joke";
 import fripeWeather from "./fripe-weather"
 import hackerNews from "./hackerNews";
 import InfoDB from "./info-db";
+import VocaDB from "./vocadb";
 
 export const widgetConfigs = [
   css,
@@ -37,6 +38,7 @@ export const widgetConfigs = [
   joke,
   hackerNews,
   InfoDB,
+  VocaDB,
 ];
 
 if (BUILD_TARGET === "web") {

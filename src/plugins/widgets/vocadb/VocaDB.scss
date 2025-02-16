@@ -1,0 +1,47 @@
+.VocaDB-song {
+  position: relative;
+  max-width: 50vw;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #0c0c0c80;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+
+  > .titleCard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+
+    > .titleCardText {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: left;
+
+      > .artists {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+        > a::after {
+          content: ', ';
+        }
+        > a:last-child::after {
+          content: '';
+        }
+      }
+    }
+
+    > .thumb {
+      background-image: var(--coverArt);
+      background-size: cover;
+      background-position: center;
+      height: 100px;
+    }
+  }
+}
