@@ -1,5 +1,6 @@
-import React, { FC, useEffect } from "react";
-import GitHubCalendar, { ThemeInput } from "react-github-calendar";
+import React, { FC } from "react";
+import GitHubCalendar from "react-github-calendar";
+import { ThemeInput } from "react-activity-calendar";
 import { Props, defaultData } from "./types";
 import { useKey } from "../../../lib/db/react";
 import { db } from "../../../db/state";

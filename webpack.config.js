@@ -30,6 +30,12 @@ const config = {
   mode: isProduction ? "production" : "development",
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
+    fallback: {
+      "timers": require.resolve("timers-browserify"),
+      "http": require.resolve("stream-http"),
+      "https": require.resolve("https-browserify"),
+      "stream": require.resolve("stream-browserify"),
+    }
   },
   module: {
     rules: [
