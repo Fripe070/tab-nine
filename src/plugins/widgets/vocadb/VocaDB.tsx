@@ -48,7 +48,9 @@ function Song({ song }: { song: VocaDBSong }) {
     <div className="VocaDB-song">
       <div className="titleCard">
         <div className="titleCardText">
-          <h3 className="title">{song.name}</h3>
+          <a href={`https://vocadb.net/S/${song.id}`}>
+            <h3 className="title">{song.name}</h3>
+          </a>
           <div className="artists">
             {song.artists.map(artist => <a
               key={artist.id}
