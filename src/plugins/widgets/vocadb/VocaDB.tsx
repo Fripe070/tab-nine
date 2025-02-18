@@ -46,26 +46,24 @@ function Song({ song }: { song: VocaDBSong }) {
 
   return (
     <div className="VocaDB-song">
-      <div className="titleCard">
-        <div className="titleCardText">
-          <a href={`https://vocadb.net/S/${song.id}`}>
-            <h3 className="title">{song.name}</h3>
+      <img
+        className="thumb"
+        src={thumbUrl}
+        alt="Cover art"
+      />
+      <div className="titleCardText">
+        <a href={`https://vocadb.net/S/${song.id}`}>
+          <h3 className="title">{song.name}</h3>
+        </a>
+        <div className="artists">
+          {song.artists.map(artist => <a
+            key={artist.id}
+            href={`https://vocadb.net/Ar/${artist.id}`}
+          >
+            {artist.name}
           </a>
-          <div className="artists">
-            {song.artists.map(artist => <a
-              key={artist.id}
-              href={`https://vocadb.net/Ar/${artist.id}`}
-            >
-              {artist.name}
-            </a>
-            )}
-          </div>
+          )}
         </div>
-        <img
-          className="thumb"
-          src={thumbUrl}
-          alt="Cover art"
-        />
       </div>
     </div>
   );
