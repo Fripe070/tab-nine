@@ -20,10 +20,13 @@
         max-height: 60%;
         max-width: 40ch;
       }
-      .by {
+      .info {
         line-height: 1.5;
         opacity: 0.7;
         font-size: 16px;
+        a {
+          text-decoration: underline;
+        }
       }
 
 
