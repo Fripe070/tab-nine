@@ -58,7 +58,7 @@ function Song({ song }: { song: VocaDBSong }) {
         <div className="artists">
           {song.artists.map(artist => <a
             key={artist.id}
-            href={`https://vocadb.net/Ar/${artist.id}`}
+            href={artist?.artist && `https://vocadb.net/Ar/${artist.artist.id}`}
           >
             {artist.name}
           </a>
