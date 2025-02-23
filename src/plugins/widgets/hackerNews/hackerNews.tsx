@@ -81,11 +81,11 @@ function Story({ story }: { story: Story }) {
           `${story.descendants} comments`
         )}
         {" | "}
-        <img
+        {story.iconUrl && <img
           className="icon"
           src={story.iconUrl}
           alt=""
-        />
+        />}
         {" "}
         <a
           href={story.url}
