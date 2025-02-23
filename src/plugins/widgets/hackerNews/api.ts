@@ -10,7 +10,9 @@ async function getTopStoryIDs(): Promise<StoryID[]> {
 
 async function getStory(id: StoryID): Promise<Story> {
   const res = await fetch(`${apiEndpoint}/item/${id}.json`);
-  return res.json();
+  const story = await res.json() as Story;
+  story.iconUrl = await getSiteImage(story.url);
+  return story;
 }
 
 export async function getStories(
@@ -28,6 +30,6 @@ export async function getStories(
 
 export async function getSiteImage(url: string): Promise<string> {
   const res = await fetch(`https://api.microlink.io/?url=${url}`);
-  const data = await res.json();
-  return data.data.image.url;
+  const json = await res.json();
+  return json.data.logo.url;
 }

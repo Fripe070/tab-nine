@@ -11,6 +11,7 @@ export type Story = {
   title: string;
   type: "story";
   url: string;
+  iconUrl?: string;
 };
 
 export type Cache = {

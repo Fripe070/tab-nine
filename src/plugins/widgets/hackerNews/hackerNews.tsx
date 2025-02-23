@@ -45,6 +45,19 @@ export default HackerNewsWidget;
 
 
 function Story({ story }: { story: Story }) {
+  var secondsAgo = new Date().getTime() - new Date(story.time * 1000).getTime()
+
+  var timeAgoString = "just now"
+  if (secondsAgo >= 2 * 24 * 60 * 60 * 1000) {
+    timeAgoString = Math.floor(secondsAgo / (24 * 60 * 60 * 1000)) + " days ago";
+  } else if (secondsAgo >= 24 * 60 * 60 * 1000) {
+    timeAgoString = "1 day ago";
+  } else if (secondsAgo >= 2 * 60 * 60 * 1000) {
+    timeAgoString = Math.floor(secondsAgo / (60 * 60 * 1000)) + " hours ago";
+  } else if (secondsAgo >= 60 * 60 * 1000) {
+    timeAgoString = "1 hour ago";
+  }
+
   return (
     <div className="story">
       <a
@@ -59,14 +72,28 @@ function Story({ story }: { story: Story }) {
         Posted by {SimpleURL(
           `https://news.ycombinator.com/user?id=${story.id}`,
           story.by
-        )}
-        {" "}
-        |
-        {" "}
+        )} {" "} {timeAgoString}
+        {" | "}
+        {story.score} points
+        {" | "}
         {SimpleURL(
           `https://news.ycombinator.com/item?id=${story.id}`,
           `${story.descendants} comments`
         )}
+        {" | "}
+        <img
+          className="icon"
+          src={story.iconUrl}
+          alt=""
+        />
+        {" "}
+        <a
+          href={story.url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {new URL(story.url).hostname}
+        </a>
       </p>
     </div>
   );
