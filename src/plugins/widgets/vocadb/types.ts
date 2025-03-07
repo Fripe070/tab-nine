@@ -152,10 +152,24 @@ export type Cache = {
   cachedAt: number;
 };
 
+export enum VocaDBDatabase {
+  VocaDB = "VocaDB",
+  Utaitedb = "UtaiteDB",
+  Custom = "Custom API URL",
+}
+export const databaseUrls: Record<VocaDBDatabase, string | string> = {
+  [VocaDBDatabase.VocaDB]: "https://vocadb.net/api",
+  [VocaDBDatabase.Utaitedb]: "https://utaitedb.net/api",
+  [VocaDBDatabase.Custom]: "",
+};
+
 export type Data = {
+  database: VocaDBDatabase;
+  customDbUrl?: string;
 };
 
 export type Props = API<Data, Cache>;
 
 export const defaultData: Data = {
+  database: VocaDBDatabase.VocaDB,
 };

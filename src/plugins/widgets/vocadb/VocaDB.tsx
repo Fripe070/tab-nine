@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Props, defaultData, VocaDBSong } from "./types";
+import { Props, defaultData, VocaDBSong, databaseUrls } from "./types";
 import { useCachedEffect } from "../../../hooks";
 import { getHighlightedSongs } from "./api";
 import { HOURS } from "../../../utils";
@@ -12,6 +12,7 @@ function NthMinute(interval: number, time: Date): number {
 
 const EXPIRE_IN = HOURS * 12;
 
+
 const HackerNewsWidget: FC<Props> = ({
   cache,
   data = defaultData,
@@ -20,14 +21,19 @@ const HackerNewsWidget: FC<Props> = ({
 }) => {
   useCachedEffect(
     () => {
+      const apiUrl = databaseUrls[data.database] ?? data.customDbUrl;
+      if (!apiUrl) return;
       console.log("Fetching VocaDB songs")
-      getHighlightedSongs(loader).then(songs => setCache({
-        songs: songs,
-        cachedAt: Date.now(),
-      }));
+      getHighlightedSongs(loader, apiUrl).then(songs => {
+        if (!songs) return;
+        setCache({
+          songs: songs,
+          cachedAt: Date.now(),
+        })
+      });
     },
     cache ? cache.cachedAt + EXPIRE_IN : 0,
-    [],
+    [data.database, data.customDbUrl],
   );
   if (!cache) return null;
 

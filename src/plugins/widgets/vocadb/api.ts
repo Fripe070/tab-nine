@@ -1,17 +1,21 @@
 import { API } from "../../types";
 import { VocaDBSong } from "./types";
 
-const apiEndpoint = "https://vocadb.net/api";
 
 export async function getHighlightedSongs(
   loader: API["loader"],
-): Promise<VocaDBSong[]> {
+  apiEndpoint: string
+): Promise<VocaDBSong[] | undefined> {
   loader.push();
 
-  const res = await fetch(`${apiEndpoint}/songs/highlighted?fields=AdditionalNames,Albums,Artists,Lyrics,MainPicture,Names,PVs,ReleaseEvent,Tags,ThumbUrl,WebLinks,Bpm,CultureCodes`);
-  const e = res.json();
-  console.log(e);
+  const url = apiEndpoint.replace(/\/$/, "");
+  const res = await fetch(`${url}/songs/highlighted?fields=AdditionalNames,Albums,Artists,Lyrics,MainPicture,Names,PVs,ReleaseEvent,Tags,ThumbUrl,WebLinks,Bpm,CultureCodes`);
+  if (!res.ok) {
+    loader.pop();
+    return undefined;
+  }
+  const data = res.json();
 
   loader.pop();
-  return e;
+  return data;
 }
