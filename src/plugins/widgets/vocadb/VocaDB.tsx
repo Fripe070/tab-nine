@@ -67,7 +67,6 @@ function Song({ song }: { song: VocaDBSong }) {
             href={artist?.artist && `https://vocadb.net/Ar/${artist.artist.id}`}
             className={artist.artist?.releaseDate ? "synth" : undefined}
           >
-            {console.log(artist) ?? null}
             {artist.name}
           </a>
           )}
