@@ -10,7 +10,7 @@ function NthMinute(interval: number, time: Date): number {
   return Math.floor(time.getTime() / (1000 * 60 * interval));
 }
 
-const EXPIRE_IN = HOURS * 12;
+const EXPIRE_IN = HOURS * 1;
 
 
 const HackerNewsWidget: FC<Props> = ({
