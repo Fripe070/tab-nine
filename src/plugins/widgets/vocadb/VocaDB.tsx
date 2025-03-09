@@ -58,18 +58,20 @@ function Song({ song }: { song: VocaDBSong }) {
         alt="Cover art"
       />
       <div className="titleCardText">
-        <a href={`https://vocadb.net/S/${song.id}`}>
-          <h3 className="title">{song.name}</h3>
-        </a>
-        <div className="artists">
+        <h4 className="title">
+          <a href={`https://vocadb.net/S/${song.id}`}>{song.name}</a>
+        </h4>
+        <span className="artists">
           {song.artists.map(artist => <a
             key={artist.id}
             href={artist?.artist && `https://vocadb.net/Ar/${artist.artist.id}`}
+            className={artist.artist?.releaseDate ? "synth" : undefined}
           >
+            {console.log(artist) ?? null}
             {artist.name}
           </a>
           )}
-        </div>
+        </span>
       </div>
     </div>
   );
