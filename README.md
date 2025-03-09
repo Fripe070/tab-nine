@@ -1,3 +1,6 @@
+Fripe's fork of Tab Nine which is a fork of Tabliss, implementing new widgets, tweaking old ones and generaly mainting it to fit my personal needs.
+
+
 <div align="center"><img height="175" src="logo.svg"/>&emsp;&emsp;&emsp;<img height="175" src="https://raw.githubusercontent.com/the-wright-jamie/the-wright-jamie/main/memes/Help-Wanted-PNG-Pic.png"/></div>
 
 <h1 align="center">Welcome to Tab Nine</h1>
