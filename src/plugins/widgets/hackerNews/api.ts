@@ -11,7 +11,7 @@ async function getTopStoryIDs(): Promise<StoryID[]> {
 async function getStory(id: StoryID): Promise<Story> {
   const res = await fetch(`${apiEndpoint}/item/${id}.json`);
   const story = await res.json() as Story;
-  story.iconUrl = await getSiteImage(story.url);
+  story.iconUrl = `http://www.google.com/s2/favicons?domain=${new URL(story.url).hostname}`;
   return story;
 }
 
@@ -26,10 +26,4 @@ export async function getStories(
 
   loader.pop();
   return stories;
-}
-
-export async function getSiteImage(url: string): Promise<string> {
-  const res = await fetch(`https://api.microlink.io/?url=${url}`);
-  const json = await res.json();
-  return json.data.logo.url;
 }
