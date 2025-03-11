@@ -54,7 +54,6 @@ function Song({ song }: { song: VocaDBSong }) {
     <div className="VocaDB-song">
       <a className="thumb" href={`https://vocadb.net/S/${song.id}`}>
         <img
-          className="thumb"
           src={thumbUrl}
           alt="Cover art"
         />
