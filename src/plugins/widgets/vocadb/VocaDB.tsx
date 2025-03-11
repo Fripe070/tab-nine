@@ -52,7 +52,7 @@ function Song({ song }: { song: VocaDBSong }) {
 
   return (
     <div className="VocaDB-song">
-      <a href={`https://vocadb.net/S/${song.id}`}>
+      <a className="thumb" href={`https://vocadb.net/S/${song.id}`}>
         <img
           className="thumb"
           src={thumbUrl}
