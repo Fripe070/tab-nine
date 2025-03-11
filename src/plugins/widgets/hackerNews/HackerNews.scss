@@ -1,7 +1,5 @@
 .HackerNews {
-  max-width: 50vw;
 
-  .stories {
     display: flex;
     flex-direction: column;
 
@@ -37,5 +35,4 @@
         width: 1em;
       }
     }
-  }
 }

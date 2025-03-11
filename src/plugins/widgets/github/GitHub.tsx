@@ -4,6 +4,7 @@ import { ThemeInput } from "react-activity-calendar";
 import { Props, defaultData } from "./types";
 import { useKey } from "../../../lib/db/react";
 import { db } from "../../../db/state";
+import "./GitHub.scss";
 
 // TODO: Inherit size and colour
 

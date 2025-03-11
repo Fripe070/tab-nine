@@ -32,11 +32,9 @@ const HackerNewsWidget: FC<Props> = ({
 
   return (
     <div className="HackerNews">
-      <div className="stories">
         {cache.stories.map(story => (
           <Story key={story.id} story={story} />
         ))}
-      </div>
     </div>
   );
 };
