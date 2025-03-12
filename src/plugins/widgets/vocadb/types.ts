@@ -157,9 +157,9 @@ export enum VocaDBDatabase {
   Utaitedb = "UtaiteDB",
   Custom = "Custom API URL",
 }
-export const databaseUrls: Record<VocaDBDatabase, string | string> = {
-  [VocaDBDatabase.VocaDB]: "https://vocadb.net/api",
-  [VocaDBDatabase.Utaitedb]: "https://utaitedb.net/api",
+export const databaseUrls: Record<VocaDBDatabase, string> = {
+  [VocaDBDatabase.VocaDB]: "https://vocadb.net",
+  [VocaDBDatabase.Utaitedb]: "https://utaitedb.net",
   [VocaDBDatabase.Custom]: "",
 };
 

@@ -1,7 +1,7 @@
 .VocaDB-song {
   width: fit-content;
   max-width: 50vw;
-  height: 100px;
+  height: 4em;
 
   border-radius: 0.5rem;
   background-color: #0c0c0c80;
@@ -13,10 +13,10 @@
     height: 100%;
     border-radius: 0.5rem 0 0 0.5rem;
   }
-  > .titleCardText {
+  > .info {
     min-width: 0; // Flexbox child default is auto
 
-    padding: 1rem;
+    padding: 0 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -44,6 +44,17 @@
       }
       > .synth {
         filter: brightness(0.8);
+      }
+    }
+    > .pvs {
+      height: 24px;
+
+      display: flex;
+      flex-direction: row;
+      gap: 0.5ch;
+
+      .service-icon {
+        height: 24px;
       }
     }
   }

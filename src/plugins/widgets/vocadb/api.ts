@@ -4,11 +4,11 @@ import { VocaDBSong } from "./types";
 
 export async function getHighlightedSongs(
   loader: API["loader"],
-  apiEndpoint: string
+  dbURL: string
 ): Promise<VocaDBSong[] | undefined> {
   loader.push();
 
-  const url = apiEndpoint.replace(/\/$/, "");
+  const url = dbURL.replace(/\/$/, "") + "/api";
   const res = await fetch(`${url}/songs/highlighted?fields=AdditionalNames,Albums,Artists,Lyrics,MainPicture,Names,PVs,ReleaseEvent,Tags,ThumbUrl,WebLinks,Bpm,CultureCodes`);
   if (!res.ok) {
     loader.pop();
