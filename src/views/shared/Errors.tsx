@@ -13,7 +13,7 @@ const Errors: React.FC<Props> = ({ onClose }) => {
       <div className="Settings">
         <a
           className="button button--primary"
-          href="https://github.com/the-wright-jamie/tab-nine/issues"
+          href="https://github.com/Fripe070/tab-nine/issues"
           target="_blank"
           rel="noopener noreferrer"
           style={{ float: "right", fontSize: "1.1em" }}

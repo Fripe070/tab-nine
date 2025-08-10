@@ -17,7 +17,7 @@ export type Props = API<Data>;
 
 export const defaultData = {
   columns: 1,
-  links: [{ url: "https://tab-nine.xsfs.xyz" }],
+  links: [{ url: "https://newtab.fripe.dev" }],
   visible: true,
   linkOpenStyle: false,
 };

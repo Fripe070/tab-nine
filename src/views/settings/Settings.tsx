@@ -79,12 +79,12 @@ const Settings: React.FC = () => {
         <Logo />
         <p style={{ textAlign: "center" }}>
           <GitHubButton
-            href="https://github.com/the-wright-jamie/tab-nine"
+            href="https://github.com/Fripe070/tab-nine"
             data-color-scheme="no-preference: light; light: light; dark: dark;"
             data-icon="octicon-star"
             data-size="large"
             data-show-count="true"
-            aria-label="Star the-wright-jamie/tab-nine on GitHub"
+            aria-label="Star Fripe070/tab-nine on GitHub"
           >
             Star on GitHub
           </GitHubButton>
@@ -92,14 +92,14 @@ const Settings: React.FC = () => {
         <div style={{ textAlign: "center" }}>
           <p>
             <a
-              href="https://github.com/the-wright-jamie/tab-nine/wiki"
+              href="https://github.com/Fripe070/tab-nine/wiki"
               target="_blank"
             >
               <Icon name="book" /> Wiki
             </a>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <a
-              href="https://github.com/the-wright-jamie/tab-nine/wiki/Tips-&-Tricks"
+              href="https://github.com/Fripe070/tab-nine/wiki/Tips-&-Tricks"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -107,7 +107,7 @@ const Settings: React.FC = () => {
             </a>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <a
-              href="https://github.com/the-wright-jamie/tab-nine/issues"
+              href="https://github.com/Fripe070/tab-nine/issues"
               rel="noopener noreferrer"
               target="_blank"
             >

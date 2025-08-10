@@ -39,7 +39,7 @@ const StoreError: React.FC<Props> = ({ onClose }) => {
         <p>
           If you're still having issues, you can get support by raising an issue
           on{" "}
-          <a href="https://github.com/the-wright-jamie/tab-nine/issues">
+          <a href="https://github.com/Fripe070/tab-nine/issues">
             the GitHub page
           </a>
           .

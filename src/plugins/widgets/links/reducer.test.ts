@@ -5,34 +5,34 @@ describe("links/reducer()", () => {
   it("should add new links", () => {
     expect(reducer([], addLink())).toEqual([{ url: "https://" }]);
     expect(
-      reducer([{ url: "https://tab-nine.xsfs.xyz/" }], { type: "ADD_LINK" }),
-    ).toEqual([{ url: "https://tab-nine.xsfs.xyz/" }, { url: "https://" }]);
+      reducer([{ url: "https://newtab.fripe.dev/" }], { type: "ADD_LINK" }),
+    ).toEqual([{ url: "https://newtab.fripe.dev/" }, { url: "https://" }]);
   });
 
   it("should remove links", () => {
     expect(
       reducer(
         [
-          { url: "https://tab-nine.xsfs.xyz/" },
-          { url: "https://tab-nine.xsfs.xyz/about.html" },
+          { url: "https://newtab.fripe.dev/" },
+          { url: "https://newtab.fripe.dev/about.html" },
         ],
         removeLink(0),
       ),
-    ).toEqual([{ url: "https://tab-nine.xsfs.xyz/about.html" }]);
+    ).toEqual([{ url: "https://newtab.fripe.dev/about.html" }]);
   });
 
   it("should update links", () => {
     expect(
       reducer(
         [
-          { url: "https://tab-nine.xsfs.xyz/" },
-          { url: "https://tab-nine.xsfs.xyz/about.html" },
+          { url: "https://newtab.fripe.dev/" },
+          { url: "https://newtab.fripe.dev/about.html" },
         ],
-        updateLink(0, { name: "tab-nine", url: "https://tab-nine.xsfs.xyz/" }),
+        updateLink(0, { name: "tab-nine", url: "https://newtab.fripe.dev/" }),
       ),
     ).toEqual([
-      { name: "tab-nine", url: "https://tab-nine.xsfs.xyz/" },
-      { url: "https://tab-nine.xsfs.xyz/about.html" },
+      { name: "tab-nine", url: "https://newtab.fripe.dev/" },
+      { url: "https://newtab.fripe.dev/about.html" },
     ]);
   });
 
@@ -40,31 +40,31 @@ describe("links/reducer()", () => {
     expect(
       reducer(
         [
-          { url: "https://tab-nine.xsfs.xyz/" },
-          { url: "https://tab-nine.xsfs.xyz/about.html" },
-          { url: "https://tab-nine.xsfs.xyz/support.html" },
+          { url: "https://newtab.fripe.dev/" },
+          { url: "https://newtab.fripe.dev/about.html" },
+          { url: "https://newtab.fripe.dev/support.html" },
         ],
         reorderLink(1, 0),
       ),
     ).toEqual([
-      { url: "https://tab-nine.xsfs.xyz/about.html" },
-      { url: "https://tab-nine.xsfs.xyz/" },
-      { url: "https://tab-nine.xsfs.xyz/support.html" },
+      { url: "https://newtab.fripe.dev/about.html" },
+      { url: "https://newtab.fripe.dev/" },
+      { url: "https://newtab.fripe.dev/support.html" },
     ]);
 
     expect(
       reducer(
         [
-          { url: "https://tab-nine.xsfs.xyz/" },
-          { url: "https://tab-nine.xsfs.xyz/about.html" },
-          { url: "https://tab-nine.xsfs.xyz/support.html" },
+          { url: "https://newtab.fripe.dev/" },
+          { url: "https://newtab.fripe.dev/about.html" },
+          { url: "https://newtab.fripe.dev/support.html" },
         ],
         reorderLink(1, 2),
       ),
     ).toEqual([
-      { url: "https://tab-nine.xsfs.xyz/" },
-      { url: "https://tab-nine.xsfs.xyz/support.html" },
-      { url: "https://tab-nine.xsfs.xyz/about.html" },
+      { url: "https://newtab.fripe.dev/" },
+      { url: "https://newtab.fripe.dev/support.html" },
+      { url: "https://newtab.fripe.dev/about.html" },
     ]);
   });
 
