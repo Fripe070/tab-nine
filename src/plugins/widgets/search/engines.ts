@@ -92,4 +92,9 @@ export const engines: Engine[] = [
     name: "Kagi",
     search_url: "https://kagi.com/search?q={searchTerms}"
   },
+  {
+    key: "chatgpt",
+    name: "ChatGPT",
+    search_url: "https://chatgpt.com/?q={searchTerms}&hints=search&temporary-chat=true"
+  },
 ];
