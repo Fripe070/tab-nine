@@ -6,7 +6,7 @@ on:
   pull_request:
 
 env:
-  PUBLIC_PATH: /tab-nine
+  PUBLIC_PATH: /
 
 jobs:
   test:
