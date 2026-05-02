@@ -1,0 +1,111 @@
+.Modrinth {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, rgba(18, 18, 18, 0.72), rgba(12, 12, 12, 0.82));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.45em;
+  padding: 0.25em 0.3em;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  font-size: 0.78em;
+
+  .modrinth-empty {
+    color: rgba(255, 255, 255, 0.5);
+    padding: 0.25em 0.4em;
+  }
+
+  .modrinth-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modrinth-item {
+    height: fit-content;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 0.35em;
+
+    .modrinth-link {
+      display: flex;
+      align-items: center;
+      gap: 0.55em;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.92);
+      padding: 0.42em 0.42em;
+      transition: background-color 0.15s ease, transform 0.15s ease, opacity 0.15s ease;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.06);
+        transform: translateY(-0.03em);
+      }
+    }
+
+    .modrinth-icon {
+      display: inline-block;
+      width: 1.35em;
+      height: 1.35em;
+      border-radius: 0.25em;
+      flex-shrink: 0;
+      object-fit: cover;
+      vertical-align: text-top;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .modrinth-info {
+      min-width: 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2em;
+
+      .modrinth-title {
+        font-size: 1em;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.1;
+        letter-spacing: 0.01em;
+      }
+
+      .modrinth-meta {
+        display: flex;
+        gap: 0.7em;
+        align-items: center;
+        font-size: 0.72em;
+        color: rgba(255, 255, 255, 0.68);
+        white-space: nowrap;
+        overflow: hidden;
+
+        .modrinth-updated {
+          font-weight: 500;
+          flex-shrink: 0;
+        }
+
+        .modrinth-downloads {
+          font-weight: 600;
+          flex-shrink: 0;
+        }
+      }
+    }
+  }
+}
+
+.ModrinthSettings {
+  p {
+    font-size: 0.9em;
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
