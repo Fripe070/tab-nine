@@ -19,16 +19,16 @@ const ModrinthWidget: FC<Props> = ({
         loader,
         data.count,
         data.minDownloads,
-        data.maxDownloads
+        data.maxDownloads,
       ).then((mods) =>
         setCache({
           mods: mods,
           cachedAt: Date.now(),
-        })
+        }),
       );
     },
     cache ? cache.cachedAt + EXPIRE_IN : 0,
-    [data.count, data.minDownloads, data.maxDownloads]
+    [data.count, data.minDownloads, data.maxDownloads],
   );
 
   if (!cache) return null;
@@ -78,7 +78,9 @@ function ModItem({ mod }: { mod: ModrinthMod }) {
         target="_blank"
         rel="noopener noreferrer"
         className="modrinth-link"
-        title={`${mod.description} • ${mod.downloads.toLocaleString()} downloads`}
+        title={`${
+          mod.description
+        } • ${mod.downloads.toLocaleString()} downloads`}
       >
         {mod.icon_url && (
           <img src={mod.icon_url} alt={mod.title} className="modrinth-icon" />

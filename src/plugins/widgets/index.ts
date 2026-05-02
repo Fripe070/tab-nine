@@ -14,7 +14,7 @@ import todo from "./todo";
 import weather from "./weather";
 import workHours from "./workHours";
 import joke from "./joke";
-import fripeWeather from "./fripe-weather"
+import fripeWeather from "./fripe-weather";
 import hackerNews from "./hackerNews";
 import InfoDB from "./info-db";
 import VocaDB from "./vocadb";

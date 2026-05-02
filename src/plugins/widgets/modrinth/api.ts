@@ -18,21 +18,18 @@ export async function getRecentlyUpdatedMods(
 
     // Fetch extra mods to account for filtering
     const fetchLimit = Math.min(Math.max(count * 3, 50), 100);
-    
+
     const params = new URLSearchParams({
       limit: fetchLimit.toString(),
       index: "updated",
       facets: JSON.stringify(facets),
     });
 
-    const res = await fetch(
-      `${apiEndpoint}/search?${params.toString()}`,
-      {
-        headers: {
-          "User-Agent": userAgent,
-        },
-      }
-    );
+    const res = await fetch(`${apiEndpoint}/search?${params.toString()}`, {
+      headers: {
+        "User-Agent": userAgent,
+      },
+    });
 
     if (!res.ok) {
       throw new Error(`Modrinth API error: ${res.status}`);

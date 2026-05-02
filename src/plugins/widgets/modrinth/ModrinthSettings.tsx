@@ -37,18 +37,16 @@ const ModrinthSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
         onChange={(event) =>
           setData({
             ...data,
-            maxDownloads: event.target.value ? parseInt(event.target.value) : null,
+            maxDownloads: event.target.value
+              ? parseInt(event.target.value)
+              : null,
           })
         }
       />
     </label>
 
     <p>
-      <a
-        href="https://modrinth.com"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
+      <a href="https://modrinth.com" rel="noopener noreferrer" target="_blank">
         Visit Modrinth
       </a>
     </p>
