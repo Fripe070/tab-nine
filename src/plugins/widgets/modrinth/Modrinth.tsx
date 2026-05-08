@@ -38,7 +38,7 @@ const ModrinthWidget: FC<Props> = ({
 
   return (
     <div className="Modrinth">
-      {items.length === 0 ? (
+      {!items || items.length === 0 ? (
         <div className="modrinth-empty">-</div>
       ) : (
         <ul className="modrinth-list">
