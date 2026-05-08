@@ -62,14 +62,17 @@ function ModItem({ item }: { item: ModItem }) {
     maximumFractionDigits: 1,
   }).format(item.downloads);
 
-  let timeAgoString = "just now";
+  const minutes = Math.floor(timeDiff / (60 * 1000));
   const hours = Math.floor(timeDiff / (60 * 60 * 1000));
   const days = Math.floor(timeDiff / (24 * 60 * 60 * 1000));
 
+  let timeAgoString: string;
   if (days >= 1) {
     timeAgoString = days === 1 ? "1 day ago" : `${days} days ago`;
   } else if (hours >= 1) {
     timeAgoString = hours === 1 ? "1 hour ago" : `${hours} hours ago`;
+  } else {
+    timeAgoString = minutes <= 1 ? "1 min ago" : `${minutes} mins ago`;
   }
 
   return (
@@ -83,14 +86,15 @@ function ModItem({ item }: { item: ModItem }) {
           item.description
         } • ${item.downloads.toLocaleString()} downloads`}
       >
-        <span className={`platform-badge platform-${item.platform}`}>
-          {item.platform === "modrinth" ? "MR" : "CF"}
-        </span>
         {item.icon_url && (
           <img src={item.icon_url} alt={item.title} className="modrinth-icon" />
         )}
         <div className="modrinth-info">
-          <div className="modrinth-title">{item.title}</div>
+          <div className="modrinth-title">
+            <span className={`modrinth-title-text platform-${item.platform}`}>
+              {item.title}
+            </span>
+          </div>
           <div className="modrinth-meta">
             <span className="modrinth-updated">updated {timeAgoString}</span>
             <span className="modrinth-downloads">
