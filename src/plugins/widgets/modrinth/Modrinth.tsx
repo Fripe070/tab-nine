@@ -1,11 +1,11 @@
 import React, { FC } from "react";
-import { Props, defaultData, ModrinthMod } from "./types";
+import { Props, defaultData, ModItem } from "./types";
 import { useCachedEffect } from "../../../hooks";
-import { getRecentlyUpdatedMods } from "./api";
+import { getCombinedFeed } from "./api";
 import { MINUTES } from "../../../utils";
 import "./Modrinth.scss";
 
-const EXPIRE_IN = MINUTES * 30; // Cache for 30 minutes
+const EXPIRE_IN = MINUTES * 30;
 
 const ModrinthWidget: FC<Props> = ({
   cache,
@@ -15,32 +15,35 @@ const ModrinthWidget: FC<Props> = ({
 }) => {
   useCachedEffect(
     () => {
-      getRecentlyUpdatedMods(
+      getCombinedFeed(
         loader,
         data.count,
         data.minDownloads,
         data.maxDownloads,
-      ).then((mods) =>
+        data.curseforgeApiKey,
+      ).then((items) =>
         setCache({
-          mods: mods,
+          items,
           cachedAt: Date.now(),
         }),
       );
     },
     cache ? cache.cachedAt + EXPIRE_IN : 0,
-    [data.count, data.minDownloads, data.maxDownloads],
+    [data.count, data.minDownloads, data.maxDownloads, data.curseforgeApiKey],
   );
 
   if (!cache) return null;
 
+  const items = cache.items || [];
+
   return (
     <div className="Modrinth">
-      {cache.mods.length === 0 ? (
+      {items.length === 0 ? (
         <div className="modrinth-empty">-</div>
       ) : (
         <ul className="modrinth-list">
-          {cache.mods.map((mod) => (
-            <ModItem key={mod.project_id} mod={mod} />
+          {items.map((item) => (
+            <ModItem key={item.id} item={item} />
           ))}
         </ul>
       )}
@@ -50,14 +53,14 @@ const ModrinthWidget: FC<Props> = ({
 
 export default ModrinthWidget;
 
-function ModItem({ mod }: { mod: ModrinthMod }) {
-  const updatedDate = new Date(mod.date_modified);
+function ModItem({ item }: { item: ModItem }) {
+  const updatedDate = new Date(item.date_modified);
   const now = new Date();
   const timeDiff = now.getTime() - updatedDate.getTime();
   const compactDownloads = new Intl.NumberFormat(undefined, {
     notation: "compact",
     maximumFractionDigits: 1,
-  }).format(mod.downloads);
+  }).format(item.downloads);
 
   let timeAgoString = "just now";
   const hours = Math.floor(timeDiff / (60 * 60 * 1000));
@@ -69,24 +72,25 @@ function ModItem({ mod }: { mod: ModrinthMod }) {
     timeAgoString = hours === 1 ? "1 hour ago" : `${hours} hours ago`;
   }
 
-  const modrinthUrl = `https://modrinth.com/mod/${mod.slug}`;
-
   return (
     <li className="modrinth-item">
       <a
-        href={modrinthUrl}
+        href={item.url}
         target="_blank"
         rel="noopener noreferrer"
         className="modrinth-link"
         title={`${
-          mod.description
-        } • ${mod.downloads.toLocaleString()} downloads`}
+          item.description
+        } • ${item.downloads.toLocaleString()} downloads`}
       >
-        {mod.icon_url && (
-          <img src={mod.icon_url} alt={mod.title} className="modrinth-icon" />
+        <span className={`platform-badge platform-${item.platform}`}>
+          {item.platform === "modrinth" ? "MR" : "CF"}
+        </span>
+        {item.icon_url && (
+          <img src={item.icon_url} alt={item.title} className="modrinth-icon" />
         )}
         <div className="modrinth-info">
-          <div className="modrinth-title">{mod.title}</div>
+          <div className="modrinth-title">{item.title}</div>
           <div className="modrinth-meta">
             <span className="modrinth-updated">updated {timeAgoString}</span>
             <span className="modrinth-downloads">

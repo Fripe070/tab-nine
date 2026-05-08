@@ -1,20 +1,21 @@
 import { API } from "../../types";
 
-export type ModrinthMod = {
-  project_id: string;
-  slug: string;
+export type Platform = "modrinth" | "curseforge";
+
+export type ModItem = {
+  id: string;
+  platform: Platform;
   title: string;
   description: string;
   icon_url: string | null;
-  date_modified: string; // ISO date string
+  date_modified: string;
   downloads: number;
-  follows: number;
-  status: string;
-  project_type: string;
+  slug: string;
+  url: string;
 };
 
 export type Cache = {
-  mods: ModrinthMod[];
+  items: ModItem[];
   cachedAt: number;
 };
 
@@ -22,12 +23,14 @@ export type Data = {
   count: number;
   minDownloads: number;
   maxDownloads: number | null;
+  curseforgeApiKey: string;
 };
 
 export type Props = API<Data, Cache>;
 
 export const defaultData: Data = {
   count: 3,
-  minDownloads: 0,
+  minDownloads: 1,
   maxDownloads: null,
+  curseforgeApiKey: "",
 };

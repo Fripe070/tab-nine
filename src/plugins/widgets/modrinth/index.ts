@@ -4,8 +4,8 @@ import ModrinthSettings from "./ModrinthSettings";
 
 const config: Config = {
   key: "widget/modrinth",
-  name: "Modrinth Mods",
-  description: "Recently updated mods from Modrinth.",
+  name: "Mod Updates",
+  description: "Recently updated mods from Modrinth and CurseForge.",
   dashboardComponent: Modrinth,
   settingsComponent: ModrinthSettings,
 };

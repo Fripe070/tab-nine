@@ -93,6 +93,29 @@
         }
       }
     }
+
+    .platform-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.6em;
+      height: 1.6em;
+      border-radius: 0.25em;
+      font-size: 0.65em;
+      font-weight: 700;
+      flex-shrink: 0;
+      letter-spacing: 0.02em;
+
+      &.platform-modrinth {
+        background: rgba(55, 210, 150, 0.2);
+        color: rgb(55, 210, 150);
+      }
+
+      &.platform-curseforge {
+        background: rgba(245, 105, 30, 0.2);
+        color: rgb(245, 105, 30);
+      }
+    }
   }
 }
 
