@@ -134,7 +134,11 @@ export async function getCombinedFeed(
       fetchCurseForgeMods(curseforgeApiKey, count, minDownloads, maxDownloads),
     ]);
 
-    const merged = [...modrinth, ...curseforge];
+    const modrinthSlugs = new Set(modrinth.map((m) => m.slug.toLowerCase().trim()));
+    const merged = [
+      ...modrinth,
+      ...curseforge.filter((m) => !modrinthSlugs.has(m.slug.toLowerCase().trim())),
+    ];
     merged.sort(
       (a, b) =>
         new Date(b.date_modified).getTime() -
