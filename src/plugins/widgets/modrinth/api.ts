@@ -3,7 +3,7 @@ import { ModItem } from "./types";
 
 const MODRINTH_API = "https://api.modrinth.com/v2";
 const CURSEFORGE_API = "https://api.curseforge.com/v1";
-const userAgent = "tab-nine/modrinth-widget (fripe070@gmail.com)";
+const userAgent = "tab-nine/modrinth-widget";
 
 interface RawModrinthHit {
   project_id: string;
@@ -14,6 +14,11 @@ interface RawModrinthHit {
   date_modified: string;
   downloads: number;
 }
+
+type ModrinthFeed = {
+  items: ModItem[];
+  excludedKeys: Set<string>;
+};
 
 interface RawCurseForgeMod {
   id: number;
@@ -26,13 +31,20 @@ interface RawCurseForgeMod {
   dateModified: string;
 }
 
-async function fetchModrinthMods(
-  count: number,
-  minDownloads: number,
-  maxDownloads: number | null,
-): Promise<ModItem[]> {
-  const facets = [["project_type:mod"]];
-  const fetchLimit = Math.min(Math.max(count * 3, 50), 100);
+const normalizedSlug = (slug: string) => slug.toLowerCase().trim();
+const normalizedTitle = (title: string) =>
+  title.toLowerCase().replace(/[^a-z0-9]+/g, "");
+
+const deduplicationKeys = (mod: Pick<ModItem, "slug" | "title">) => [
+  `slug:${normalizedSlug(mod.slug)}`,
+  `title:${normalizedTitle(mod.title)}`,
+];
+
+async function searchModrinthMods(
+  facets: string[][],
+  limit: number,
+): Promise<RawModrinthHit[]> {
+  const fetchLimit = Math.min(Math.max(limit * 3, 50), 100);
 
   const params = new URLSearchParams({
     limit: fetchLimit.toString(),
@@ -50,16 +62,28 @@ async function fetchModrinthMods(
   }
 
   const data = await res.json();
-  let mods: RawModrinthHit[] = data.hits || [];
+  return data.hits || [];
+}
 
-  mods = mods.filter((mod) => {
+async function fetchModrinthMods(
+  count: number,
+  minDownloads: number,
+  maxDownloads: number | null,
+): Promise<ModrinthFeed> {
+  // Match Modrinth's Discover exclusion for projects disclosed as AI-generated.
+  const safeFacets = [["project_type:mod"], ["disclosure_types!=ai_content"]];
+  const aiFacets = [["project_type:mod"], ["disclosure_types:ai_content"]];
+  const [safeMods, aiMods] = await Promise.all([
+    searchModrinthMods(safeFacets, count),
+    searchModrinthMods(aiFacets, count),
+  ]);
+
+  const items = safeMods.filter((mod) => {
     const downloads = mod.downloads || 0;
     if (minDownloads > 0 && downloads < minDownloads) return false;
     if (maxDownloads !== null && downloads > maxDownloads) return false;
     return true;
-  });
-
-  return mods.slice(0, count).map((mod) => ({
+  }).slice(0, count).map((mod) => ({
     id: `mr-${mod.project_id}`,
     platform: "modrinth" as const,
     title: mod.title,
@@ -70,6 +94,12 @@ async function fetchModrinthMods(
     slug: mod.slug,
     url: `https://modrinth.com/mod/${mod.slug}`,
   }));
+
+  return {
+    items,
+    // Keep AI-disclosed Modrinth projects and their CurseForge equivalents out.
+    excludedKeys: new Set(aiMods.flatMap(deduplicationKeys)),
+  };
 }
 
 async function fetchCurseForgeMods(
@@ -129,15 +159,20 @@ export async function getCombinedFeed(
   loader.push();
 
   try {
-    const [modrinth, curseforge] = await Promise.all([
+    const [modrinthFeed, curseforge] = await Promise.all([
       fetchModrinthMods(count, minDownloads, maxDownloads),
       fetchCurseForgeMods(curseforgeApiKey, count, minDownloads, maxDownloads),
     ]);
 
-    const modrinthSlugs = new Set(modrinth.map((m) => m.slug.toLowerCase().trim()));
+    const modrinthKeys = new Set([
+      ...modrinthFeed.items.flatMap(deduplicationKeys),
+      ...modrinthFeed.excludedKeys,
+    ]);
     const merged = [
-      ...modrinth,
-      ...curseforge.filter((m) => !modrinthSlugs.has(m.slug.toLowerCase().trim())),
+      ...modrinthFeed.items,
+      ...curseforge.filter(
+        (mod) => !deduplicationKeys(mod).some((key) => modrinthKeys.has(key)),
+      ),
     ];
     merged.sort(
       (a, b) =>
